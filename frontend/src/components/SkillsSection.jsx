@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './SkillsSection.css'
+import { apiConfig } from '../config/api'
 
 const SkillsSection = () => {
   const sectionRef = useRef(null)
@@ -7,7 +8,7 @@ const SkillsSection = () => {
 
   useEffect(() => {
     // Obtener habilidades desde la API
-    fetch('/api/skills/')
+    fetch(apiConfig.endpoints.skills)
       .then(res => res.json())
       .then(data => {
         const skillsData = data.results || (Array.isArray(data) ? data : [])

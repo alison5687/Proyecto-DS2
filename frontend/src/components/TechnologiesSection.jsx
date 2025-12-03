@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './TechnologiesSection.css'
+import { apiConfig } from '../config/api'
 
 const TechnologiesSection = () => {
   const sectionRef = useRef(null)
@@ -7,7 +8,7 @@ const TechnologiesSection = () => {
 
   useEffect(() => {
     // Obtener tecnologías desde la API
-    fetch('/api/technologies/')
+    fetch(apiConfig.endpoints.technologies)
       .then(res => res.json())
       .then(data => {
         const techs = data.results || (Array.isArray(data) ? data : [])
