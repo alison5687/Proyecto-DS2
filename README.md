@@ -1,114 +1,201 @@
-# 🌟 Hoja de Vida Interactiva
+# 🌟 Hoja de Vida - Proyecto Full Stack
 
-Una hoja de vida moderna, única e interactiva creada con HTML, CSS y JavaScript puro. Incluye animaciones suaves, efectos visuales impresionantes y un diseño responsivo.
+Proyecto completo de hoja de vida con frontend en React + Vite y backend en Django.
 
-## ✨ Características
-
-- 🎨 **Diseño Único**: Interfaz moderna con efectos glassmorphism y gradientes
-- ⚡ **Animaciones Suaves**: Partículas animadas, efectos de escritura y transiciones fluidas
-- 📱 **Totalmente Responsive**: Se adapta perfectamente a todos los dispositivos
-- 🎯 **Navegación Intuitiva**: Menú flotante que sigue el scroll
-- 🌈 **Efectos Visuales**: Canvas con partículas conectadas y efectos de hover
-- ⚙️ **Fácil de Personalizar**: Código limpio y bien organizado
-
-## 🚀 Cómo Usar
-
-1. **Abrir la hoja de vida**: Simplemente abre el archivo `index.html` en tu navegador
-   - Puedes hacer doble clic en el archivo
-   - O arrastrarlo a tu navegador favorito
-
-2. **Personalizar información**:
-   - Abre `index.html` en un editor de texto
-   - Busca la sección de "Contacto" (línea ~150)
-   - Edita tu información de contacto (email, LinkedIn, GitHub)
-
-## 📝 Personalización
-
-### Cambiar Colores
-
-Los colores principales están definidos en `styles.css` en la sección `:root`:
-
-```css
-:root {
-    --primary-color: #6366f1;    /* Color principal */
-    --secondary-color: #8b5cf6;  /* Color secundario */
-    --accent-color: #ec4899;     /* Color de acento */
-}
-```
-
-### Modificar Habilidades
-
-Edita las habilidades en la sección correspondiente de `index.html`:
-
-```html
-<div class="skill-item" data-level="90">
-    <span class="skill-name">JavaScript</span>
-    <!-- ... -->
-</div>
-```
-
-El atributo `data-level` controla el porcentaje de la barra (0-100).
-
-### Agregar Tecnologías
-
-Para agregar más tecnologías, copia el bloque de `tech-card` en la sección de tecnologías:
-
-```html
-<div class="tech-card">
-    <div class="tech-icon">🔧</div>
-    <span>Tu Tecnología</span>
-</div>
-```
-
-### Cambiar Textos
-
-Todos los textos están directamente en el HTML, puedes editarlos libremente:
-- Títulos de secciones
-- Descripciones
-- Información personal
-- Textos del hero
-
-## 🎨 Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
 ```
 hoja-de-vida/
-│
-├── index.html      # Estructura principal
-├── styles.css      # Estilos y animaciones
-├── script.js       # Interactividad y efectos
-└── README.md       # Este archivo
+├── frontend/          # Aplicación React + Vite
+│   ├── src/
+│   │   ├── components/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+├── backend/            # API REST con Django
+│   ├── api/
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   └── serializers.py
+│   ├── cv_project/
+│   ├── manage.py
+│   └── requirements.txt
+└── README.md
 ```
 
-## 📱 Compatibilidad
+## 🚀 Inicio Rápido
 
-- ✅ Chrome/Edge (recomendado)
-- ✅ Firefox
-- ✅ Safari
-- ✅ Navegadores móviles
+### Prerrequisitos
+- Python 3.8 o superior
+- Node.js (v16 o superior) para el frontend
+
+### Opción 1: Inicio Rápido con Scripts (Windows)
+
+**Para iniciar el backend:**
+```bash
+start_backend.bat
+```
+El script abrirá automáticamente el navegador en http://localhost:8000
+
+**Para iniciar el frontend:**
+```bash
+start_frontend.bat
+```
+El script abrirá automáticamente el navegador en http://localhost:5174
+
+### Opción 2: Inicio Manual
+
+### 1. Configurar Backend
+
+```bash
+cd backend
+
+# Crear entorno virtual (recomendado)
+python -m venv venv
+
+# Activar entorno virtual
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
+
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Ejecutar migraciones
+python manage.py migrate
+
+# Cargar datos iniciales
+python manage.py load_initial_data
+
+# Ejecutar servidor
+python manage.py runserver
+```
+
+El backend Django estará en `http://localhost:8000`
+
+### 2. Configurar Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+El frontend estará en `http://localhost:5174`
+
+## 📚 Documentación
+
+### Frontend
+
+- **Tecnología**: React 18 + Vite
+- **Puerto**: 5174
+- **Proxy**: Configurado para redirigir `/api` al backend Django
+
+Ver [frontend/README.md](frontend/README.md) para más detalles.
+
+### Backend Django
+
+- **Framework**: Django 4.2 + Django REST Framework
+- **Base de datos**: SQLite (integrada en el backend)
+- **Puerto**: 8000
+- **Admin**: `http://localhost:8000/admin/`
+
+#### Endpoints de la API
+
+- `GET /api/profile/current/` - Obtener perfil actual
+- `GET /api/skills/` - Obtener todas las habilidades
+- `GET /api/technologies/` - Obtener todas las tecnologías
+- `GET /api/experience/` - Obtener experiencia laboral
+- `GET /api/education/` - Obtener educación
+- `GET /api/projects/` - Obtener proyectos
+- `POST /api/contact/messages/` - Enviar mensaje de contacto
+- `GET /api/health/` - Estado del servidor
+
+Ver [backend/README.md](backend/README.md) para más detalles.
+
+## 🎯 Modelos Django (Casillas de Información)
+
+Toda la información está organizada en modelos Django:
+
+- **Profile** - Perfil principal (nombre, título, email, LinkedIn, GitHub, bio, about)
+- **Skill** - Habilidades técnicas (nombre, nivel, categoría)
+- **Technology** - Tecnologías y frameworks (nombre, categoría, icono)
+- **Experience** - Experiencia laboral (empresa, puesto, descripción, fechas)
+- **Education** - Educación (institución, título, campo, fechas)
+- **Project** - Proyectos (nombre, descripción, tecnologías, URLs)
+- **ContactMessage** - Mensajes de contacto (nombre, email, asunto, mensaje)
+
+Puedes gestionar toda esta información desde:
+- El admin de Django: `http://localhost:8000/admin/`
+- La API REST: `http://localhost:8000/api/`
+- El comando de carga inicial: `python manage.py load_initial_data`
 
 ## 🛠️ Tecnologías Utilizadas
 
-- HTML5
-- CSS3 (con variables, animaciones y efectos modernos)
-- JavaScript Vanilla (sin dependencias)
-- Google Fonts (Poppins y JetBrains Mono)
+### Frontend
+- React 18
+- Vite
+- CSS3 (Variables CSS, Animaciones)
 
-## 💡 Tips
+### Backend
+- Django 4.2
+- Django REST Framework
+- SQLite
 
-1. **Para producción**: Puedes subir estos archivos a cualquier hosting estático (GitHub Pages, Netlify, Vercel, etc.)
+## 📝 Scripts Disponibles
 
-2. **Agregar más secciones**: Simplemente copia la estructura de una sección existente y personalízala
+### Frontend
+```bash
+npm run dev      # Desarrollo
+npm run build    # Producción
+npm run preview  # Preview de build
+```
 
-3. **Cambiar la imagen de perfil**: Reemplaza el emoji en `.profile-image::before` por una imagen real si lo deseas
+### Backend
+```bash
+python manage.py runserver        # Ejecutar servidor
+python manage.py migrate          # Aplicar migraciones
+python manage.py load_initial_data # Cargar datos iniciales
+python manage.py createsuperuser  # Crear superusuario
+```
 
-4. **Optimizar**: Para mejor rendimiento, considera optimizar las imágenes si agregas algunas
+## 🎨 Características
+
+- ✨ Diseño moderno con efectos glassmorphism
+- ⚡ Animaciones suaves y partículas interactivas
+- 📱 Totalmente responsive
+- 🎯 Navegación fluida con scroll suave
+- 🔄 API REST completa con Django
+- 💾 Base de datos integrada en el backend
+- 🚀 Hot reload en desarrollo
+- 🔗 Enlaces de contacto funcionales (email, LinkedIn, GitHub)
+
+## 📦 Build para Producción
+
+### Frontend
+```bash
+cd frontend
+npm run build
+```
+Los archivos se generarán en `frontend/dist/`
+
+### Backend
+El backend Django está listo para producción. Considera usar Gunicorn o similar.
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
 ## 📄 Licencia
 
-Esta hoja de vida es de uso personal. Siéntete libre de usarla y modificarla como desees.
+Este proyecto es de uso personal. Siéntete libre de usarlo y modificarlo como desees.
 
 ---
 
 **¡Buena suerte con tu búsqueda de empleo!** 🚀
-
-Si tienes preguntas o necesitas ayuda para personalizarla, no dudes en revisar el código. Está bien comentado y organizado para facilitar las modificaciones.
